@@ -1,9 +1,9 @@
 {
   "sheet": "",
-  "handsFreeMode": "false",
+  "handsFreeMode": "true",
   "updateNotifier": "true",
-  "idLength": "6",
+  "idLength": "4",
   "idLengthFallback": "7",
-  "applicationName": "GrizzlyTime_JavaFX_Edition",
+  "applicationName": "SpartanTime_JavaFX_Edition",
   "grizzlyVerification": "false"
 }
