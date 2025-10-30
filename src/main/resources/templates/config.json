@@ -3,7 +3,7 @@
   "handsFreeMode": "true",
   "updateNotifier": "true",
   "idLength": "4",
-  "idLengthFallback": "7",
+  "idLengthFallback": "6",
   "applicationName": "SpartanTime_JavaFX_Edition",
   "grizzlyVerification": "false"
 }

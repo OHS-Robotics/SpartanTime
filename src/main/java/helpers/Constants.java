@@ -71,7 +71,7 @@ public class Constants {
   public static final boolean kCreditsBearPreserveRatio = true;
   public static final int kCreditsWrapTextWidth = 285;
 
-  public static final String kVersion = "2.4.0";
+  public static final String kVersion = "2.5.1";
 
   // splash constants
   public static final int kSplashWidth = 390;
@@ -81,9 +81,9 @@ public class Constants {
   public static final boolean kMentorFallback = true;
 
   public static final String kUpdateUrl =
-      "https://raw.githubusercontent.com/YCSRobotics/GrizzlyTime/main/version.txt";
+      "https://raw.githubusercontent.com/OHS-Robotics/SpartanTime/main/version.txt";
   public static final String kReleaseUrl =
-      "https://github.com/YCSRobotics/GrizzlyTime/wiki/5.-Updating-GrizzlyTime";
+      "https://github.com/OHS-Robotics/SpartanTime/wiki/5.-Updating-SpartanTime";
 
   // user states
   public static final int kIdDoesNotExist = -1;
