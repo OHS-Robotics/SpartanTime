@@ -1,5 +1,7 @@
 # SpartanTime
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/63bc292c3cb146518231dc7eeca76650)](https://app.codacy.com/gh/OHS-Robotics/SpartanTime?utm_source=github.com&utm_medium=referral&utm_content=OHS-Robotics/SpartanTime&utm_campaign=Badge_Grade)
+
 Note: Badges are outdated and still connected to GrizzlyTime
 
 ![Codacy Badge](https://app.codacy.com/project/badge/Grade/526a7badc871467ba68c0d688e87b3c7)
