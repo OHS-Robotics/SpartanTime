@@ -10,17 +10,12 @@ Note: Badges are outdated and still connected to GrizzlyTime
 
 ![example image](https://raw.githubusercontent.com/OHS-Robotics/SpartanTime/master/wiki_images/main_screen_Spartan.png)
 
-SpartanTime is a Java based time logging system that links with Google Sheets. It features fast setup (<5minutes), logging of individual student dates, quick student registration, flexible 6 digit ID system, etc.
-
-## Notice
-Google Sheets has a maximum column limit of 256 columns. The Date Log WILL break once this limit has been reached!
-I'm currently working on a workaround or an alternative means of storing this data. Stay up-to-date!
-edit: This should not be an issue anymore, Sheets supports up to 18,278 columns now
+SpartanTime is a Java-based time logging system that links with Google Sheets. It features fast setup (<5minutes), logging of individual student dates, quick student registration, flexible 6-digit ID system, etc.
 
 ## Features
 - Individual logging of days signed in
 - Tracking of student/mentor total hours
-- Easy 1 minute registration for new users
+- Easy 1-minute registration for new users
 - Compatible with USB Barcode Scanners
 - Graphics and Application name are customizable without code
 - Easily extendable
@@ -32,8 +27,10 @@ edit: This should not be an issue anymore, Sheets supports up to 18,278 columns 
 ## Downloads
 Currently supported OSes: Windows, Linux
 Unsupported OSes: Mac
-Note: I would love to support Mac. Unfortunately, I do not own a Mac machine to test SpartanTime on. It may
+Note: I would love to support Mac. Unfortunately, I do not own a Mac to test SpartanTime on. It may
 or may not work.
+**Note: Test is actually coming soon**
+
 
 Download the latest **release** [here](https://github.com/OHS-Robotics/SpartanTime/releases/latest "here").
 
