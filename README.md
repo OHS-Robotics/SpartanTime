@@ -1,12 +1,10 @@
 # SpartanTime
 
-Note: Badges are outdated and still connected to GrizzlyTime
 
-![Codacy Badge](https://app.codacy.com/project/badge/Grade/526a7badc871467ba68c0d688e87b3c7)
-![Current Version Badge](https://img.shields.io/github/release/ycsrobotics/GrizzlyTime.svg?style=flat)
-![Num Downloads](https://img.shields.io/github/downloads/ycsrobotics/GrizzlyTime/latest/total.svg?style=flat)
-![License](https://img.shields.io/github/license/ycsrobotics/GrizzlyTime.svg?style=flat)
-![Appveyor](https://ci.appveyor.com/api/projects/status/ph074gnnuymhxssw?svg=true)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/001ac7c987904404a64c926de12a9401)](https://app.codacy.com/gh/OHS-Robotics/SpartanTime/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+![GitHub Release](https://img.shields.io/github/v/release/OHS-Robotics/SpartanTime?style=flat)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/OHS-Robotics/SpartanTime/total?style=flat)
+![GitHub License](https://img.shields.io/github/license/OHS-Robotics/SpartanTime?style=flat)
 
 ![example image](https://raw.githubusercontent.com/OHS-Robotics/SpartanTime/master/wiki_images/main_screen_Spartan.png)
 
