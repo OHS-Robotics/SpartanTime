@@ -10,8 +10,8 @@ plugins {
  * Uncomment all lines regarding javafx for java 11 support!
  */
 
-group = 'GrizzlyTime'
-version = '2.4.0'
+group = 'SpartanTimeTime'
+version = '2.5.2'
 
 def javaVer = getVersion()
 

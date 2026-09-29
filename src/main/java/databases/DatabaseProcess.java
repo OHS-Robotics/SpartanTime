@@ -29,6 +29,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import javafx.application.HostServices;
+import com.google.api.client.http.HttpRequestInitializer;
+import com.google.auth.http.HttpCredentialsAdapter;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.auth.oauth2.ServiceAccountCredentials;
+import java.io.File;
+import java.io.FileInputStream;
 
 public class DatabaseProcess {
   /**
@@ -43,6 +49,10 @@ public class DatabaseProcess {
   private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS);
   private static final String CREDENTIALS_FILE_PATH = "/credentials/credentials.json";
 
+  //new constraints for service account
+  private static final String SA_KEY_FILE_NAME = "service-account.json";
+  private static HttpRequestInitializer cachedServiceAccount;
+
   private AlertUtils util = new AlertUtils();
 
   private static final String spreadsheet = LocalDbActivity.kSheetId;
@@ -55,7 +65,7 @@ public class DatabaseProcess {
 
   // based upon the Java Google Sheets quickstart
   // settings google sheets logging level to SEVERE only
-  private static <LocalServerReceiver> Credential getCredentials(
+  private static Credential getOAuthCredentials( //replace getCredentials with getOAuthCredentials and remove <LocalServerReceiver>
       final NetHttpTransport HTTP_TRANSPORT) throws IOException {
     // set google logging level to severe due to permissions bug, see
     // https://github.com/googleapis/google-http-java-client/issues/315
@@ -70,7 +80,7 @@ public class DatabaseProcess {
           "Credentials file was not loaded, check that the credentials file is in the resources directory!");
       CommonUtils.exitApplication();
     }
-
+    
     GoogleClientSecrets clientSecrets =
         GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
@@ -103,6 +113,34 @@ public class DatabaseProcess {
               }
             })
         .authorize("user");
+  } 
+  // Service account if tokens/service-account.json exists, otherwise browser OAuth
+  private static HttpRequestInitializer getCredentials(final NetHttpTransport HTTP_TRANSPORT)
+      throws IOException {
+    File keyFile = new File(TOKENS_DIRECTORY_PATH, SA_KEY_FILE_NAME);
+    if (keyFile.isFile()) {
+      return getServiceAccountCredentials(keyFile);
+    }
+    
+    LoggingUtils.log(
+    Level.INFO,
+    "Looking for service account key at " + keyFile.getAbsolutePath() + " (exists: " + keyFile.isFile() + ")");
+
+    return getOAuthCredentials(HTTP_TRANSPORT);
+  }
+  private static synchronized HttpRequestInitializer getServiceAccountCredentials(File keyFile)
+      throws IOException {
+    if (cachedServiceAccount != null) {
+      return cachedServiceAccount;
+    }
+
+    LoggingUtils.log(Level.INFO, "Using service account credentials from " + keyFile.getPath());
+
+    try (InputStream in = new FileInputStream(keyFile)) {
+      GoogleCredentials creds = ServiceAccountCredentials.fromStream(in).createScoped(SCOPES);
+      cachedServiceAccount = new HttpCredentialsAdapter(creds);
+    }
+    return cachedServiceAccount;
   }
 
   // return a list of rows and columns of a specified sheet
