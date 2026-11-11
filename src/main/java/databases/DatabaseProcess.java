@@ -44,7 +44,9 @@ public class DatabaseProcess {
   private static final String APPLICATION_NAME = "GrizzlyTime JavaFX Edition";
 
   private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-  private static final String TOKENS_DIRECTORY_PATH = "tokens";
+  private static final String TOKENS_DIRECTORY_PATH = //Tell spartantime to find service-account.json is under /app
+      CommonUtils.getCurrentDir() + File.separator + "tokens" ;
+
 
   private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS);
   private static final String CREDENTIALS_FILE_PATH = "/credentials/credentials.json";
