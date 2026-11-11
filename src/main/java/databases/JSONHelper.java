@@ -28,7 +28,7 @@ public class JSONHelper {
 
     // attempt to grab JSONString from config file
     JSONString =
-        CommonUtils.readFile(CommonUtils.getCurrentDir() + File.separator + Constants.kConfigName);
+        CommonUtils.readFile(CommonUtils.getCurrentDir() + File.separator + Constants.kConfigName); //NOTE: Since this uses getCurrentDir, it wil break if no service-account.json is present
 
     // create a JSONObject from our string
     JSONObject json = new JSONObject(JSONString);
@@ -50,7 +50,7 @@ public class JSONHelper {
 
   public void editSpreadsheetId(String sheetID) throws FileNotFoundException {
     String data =
-        CommonUtils.readFile(CommonUtils.getCurrentDir() + File.separator + Constants.kConfigName);
+        CommonUtils.readFile(CommonUtils.getCurrentDir() + File.separator + Constants.kConfigName); //NOTE: Since this uses getCurrentDir, it wil break if no service-account.json is present
 
     String[] keyData = data.split("\"sheet\":\"");
 
@@ -59,7 +59,7 @@ public class JSONHelper {
     try {
       FileWriter writer =
           new FileWriter(
-              new File(CommonUtils.getCurrentDir() + File.separator + Constants.kConfigName));
+              new File(CommonUtils.getCurrentDir() + File.separator + Constants.kConfigName)); //NOTE: Since this uses getCurrentDir, it wil break if no service-account.json is present
       writer.write(newJson);
       writer.flush();
       writer.close();

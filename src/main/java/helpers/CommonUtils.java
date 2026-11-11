@@ -21,6 +21,23 @@ public class CommonUtils {
     return System.getProperty("user.dir");
   }
 
+  //give SpartanTime access to create a folder under the %appdata% folder for use with MSI for storage
+  public static String getAppDataDir() { 
+    String localAppData = System.getenv("LOCALAPPDATA");
+    if (localAppData == null) {
+      localAppData = System.getProperty("user.home");
+    }
+
+    File appFolder = new File(localAppData, "SpartanTime");
+    if (!appFolder.exists()) {
+        appFolder.mkdirs();
+    }
+
+
+    return appFolder.getAbsolutePath();
+  }
+
+
   public static String readFile(String filePath) throws FileNotFoundException {
     File file = new File(filePath);
     Scanner sc = new Scanner(file);

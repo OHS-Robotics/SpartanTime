@@ -47,7 +47,7 @@ public class LoggingUtils {
             new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
 
         File file =
-            new File(CommonUtils.getCurrentDir() + File.separator + "logs" + File.separator);
+            new File(CommonUtils.getAppDataDir() + File.separator + "logs" + File.separator);
 
         if (!file.exists()) {
           boolean success = file.mkdir();
@@ -56,7 +56,7 @@ public class LoggingUtils {
 
         File logFile =
             new File(
-                CommonUtils.getCurrentDir()
+                CommonUtils.getAppDataDir()
                     + File.separator
                     + "logs"
                     + File.separator
@@ -68,7 +68,7 @@ public class LoggingUtils {
         while (logFile.exists()) {
           logFile =
               new File(
-                  CommonUtils.getCurrentDir()
+                  CommonUtils.getAppDataDir()
                       + File.separator
                       + "logs"
                       + File.separator
