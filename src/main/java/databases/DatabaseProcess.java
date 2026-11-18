@@ -253,35 +253,53 @@ public class DatabaseProcess {
     }
   }
 
-  private List<List<Object>> getDataFromSheet(Sheets service, String range) throws IOException {
+private List<List<Object>> getDataFromSheet(Sheets service, String range) throws IOException {
     ValueRange response = null;
+    int maxRetries = 10;
+    long delayMs = 3000;
 
-    try {
-      response = service.spreadsheets().values().get(spreadsheet, range).execute();
+    for (int attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+            response = service.spreadsheets().values().get(spreadsheet, range).execute();
+            break; //If success, then exit retry loop
+        } catch (IOException e) {
+            if (attempt == maxRetries) {
+                if (e instanceof NoRouteToHostException) {
+                    LoggingUtils.log(Level.SEVERE, "No route to host!");
+                    util.createAlert(
+                        "ERROR",
+                        "No Route to Host",
+                        "Unable to connect to the database, check internet connection and restart the application.");
+                    CommonUtils.exitApplication();
+                } else if (e instanceof SocketTimeoutException) {
+                    LoggingUtils.log(Level.SEVERE, "Connection timed out!");
+                    util.createAlert(
+                        "ERROR",
+                        "Connection timed out",
+                        "Connecting to database took too long! Please check your internet connection and retry!");
+                    CommonUtils.exitApplication();
+                }
+                throw e; //Triggers "Error connecting to database" error
+            }
 
-    } catch (NoRouteToHostException e) {
-      LoggingUtils.log(Level.SEVERE, "No route to host!");
-      util.createAlert(
-          "ERROR",
-          "No Route to Host",
-          "Unable to connect to the database, check internet connection and restart the application.");
-      CommonUtils.exitApplication();
-
-    } catch (SocketTimeoutException e) {
-      LoggingUtils.log(Level.SEVERE, "Connection timed out!");
-      util.createAlert(
-          "ERROR",
-          "Connection timed out",
-          "Connecting to database took too long! Please check your internet connection and retry!");
-      CommonUtils.exitApplication();
+            LoggingUtils.log(Level.WARNING, "Network not ready (attempt " + attempt + "/" + maxRetries + "): " + e.getMessage());
+            try {
+                Thread.sleep(delayMs);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+                throw new IOException("Interrupted while waiting for network", ie);
+            }
+        }
     }
 
-    if (response.getValues() == null) {
-      worksheetIsEmpty = true;
+    if (response == null || response.getValues() == null) {
+        worksheetIsEmpty = true;
+        return null;
     }
 
     return response.getValues();
-  }
+}
+
 
   public void updateSpreadSheet(int row, int column, String data, int page) {
 
