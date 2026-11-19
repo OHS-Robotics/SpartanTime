@@ -52,6 +52,8 @@ public class GrizzlyScene {
 
   // boolean state variables
   private boolean handsFreeMode = LocalDbActivity.kHandsFreeMode;
+  private boolean startupFullscreenApplied = false;
+
 
   // our upper image
   private ImageView imageView;
@@ -131,6 +133,12 @@ public class GrizzlyScene {
 
     // handle our buttons
     setEventHandlers();
+
+    if (LocalDbActivity.kFullscreen && !startupFullscreenApplied) {
+    startupFullscreenApplied = true;
+    Platform.runLater(optionsLink::fire);
+    }
+
   }
 
   public void reShowUI(GridPane root) {
