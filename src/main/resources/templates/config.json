@@ -4,6 +4,7 @@
   "updateNotifier": "true",
   "idLength": "4",
   "idLengthFallback": "6",
+  "fullscreen": "true",
   "applicationName": "SpartanTime_JavaFX_Edition",
   "grizzlyVerification": "false"
 }

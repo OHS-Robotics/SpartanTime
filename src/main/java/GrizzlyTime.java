@@ -81,7 +81,8 @@ public class GrizzlyTime extends Application {
     }
 
     primaryStage.setScene(scene);
-    primaryStage.setResizable(Constants.kWindowResizable);
+    primaryStage.setResizable(Constants.kWindowResizable || LocalDbActivity.kFullscreen);
+    primaryStage.setFullScreen(LocalDbActivity.kFullscreen);
     primaryStage.show();
 
     Platform.runLater(

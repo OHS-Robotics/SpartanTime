@@ -17,6 +17,7 @@ public class LocalDbActivity {
   public static boolean kUpdateNotifier = true;
   public static int kIdLength = 6;
   public static int kIdLengthFallback = 7;
+  public static boolean kFullscreen = false;
   public static String kApplicationName = "SpartanTime_JavaFX_Edition";
   public static boolean kGrizzlyVerification = false;
 
@@ -34,6 +35,7 @@ public class LocalDbActivity {
 
       kHandsFreeMode = jsonHelper.getKey("handsFreeMode").equalsIgnoreCase("true");
       kUpdateNotifier = jsonHelper.getKey("updateNotifier").equalsIgnoreCase("true");
+      kFullscreen = "true".equalsIgnoreCase(jsonHelper.getKey("fullscreen")); //defaults to false if no fullscreen parameters is found
       kGrizzlyVerification = jsonHelper.getKey("grizzlyVerification").equalsIgnoreCase("true");
       kApplicationName = jsonHelper.getKey("applicationName");
 
